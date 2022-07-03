@@ -20,5 +20,6 @@ module CallOfCthulhuCompanion
     # config.eager_load_paths << Rails.root.join("lib")
 
     require_relative Rails.root.join("lib", "skill_test.rb")
+    require_relative Rails.root.join("lib", "die.rb")
   end
 end

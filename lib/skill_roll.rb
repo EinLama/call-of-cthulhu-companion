@@ -7,7 +7,7 @@ def skill_roll(level, dice_roller)
   elsif roll <= level / 5
     :extreme_success
   elsif roll <= level / 2
-    :difficult_success
+    :hard_success
   elsif roll <= level
     :success
   else

@@ -21,12 +21,12 @@ class SkillRollTest < ActiveSupport::TestCase
     assert_equal :failure, result
   end
 
-  test "is a difficult success if rolled number is below or equal 1/2 of skill level" do
+  test "is a hard success if rolled number is below or equal 1/2 of skill level" do
     dice_roller = mock()
     dice_roller.expects(:roll).with(100).returns(25)
 
     result = skill_roll(50, dice_roller)
-    assert_equal :difficult_success, result
+    assert_equal :hard_success, result
   end
 
   test "is an extreme success if rolled number is below or equal 1/5 of skill level" do

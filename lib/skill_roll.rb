@@ -10,6 +10,10 @@ def skill_roll(level, dice_roller)
     :hard_success
   elsif roll <= level
     :success
+  elsif roll == 100
+    :fumble
+  elsif roll >= 96 && level < 50
+    :fumble
   else
     :failure
   end

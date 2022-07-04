@@ -1,5 +1,5 @@
 
-def skill_test(level, dice_roller)
+def skill_roll(level, dice_roller)
   roll = dice_roller.roll(100)
 
   if roll == 1

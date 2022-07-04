@@ -21,5 +21,6 @@ module CallOfCthulhuCompanion
 
     require_relative Rails.root.join("lib", "skill_roll.rb")
     require_relative Rails.root.join("lib", "die.rb")
+    require_relative Rails.root.join("lib", "dice_pool.rb")
   end
 end

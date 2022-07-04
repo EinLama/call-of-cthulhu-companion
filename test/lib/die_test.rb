@@ -22,4 +22,13 @@ class DieTest < ActiveSupport::TestCase
     rolled = die.roll!
     assert_equal 42, rolled
   end
+
+  test "rolled eyes affected by eyes" do
+    die = Die.new(8)
+
+    die.stubs(:random_generator).with(1..8).returns(2)
+
+    rolled = die.roll!
+    assert_equal 2, rolled
+  end
 end

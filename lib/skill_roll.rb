@@ -2,7 +2,7 @@
 def skill_roll(level, dice_roller)
   roll = dice_roller.roll(100)
 
-  if roll == 1
+  result = if roll == 1
     :critical_success
   elsif roll <= level / 5
     :extreme_success
@@ -17,4 +17,6 @@ def skill_roll(level, dice_roller)
   else
     :failure
   end
+
+  { rolled: roll, result: result }
 end

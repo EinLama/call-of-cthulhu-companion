@@ -113,4 +113,35 @@ class SkillRollTest < ActiveSupport::TestCase
       assert_equal expected, result
     end
   end
+
+  test "takes the lower tenth roll when rolling with a bonus die" do
+    @dice_roller.expects(:roll).with(100).returns(41)
+    @dice_roller.expects(:roll).with(10).returns(3)
+
+    skill_roll = SkillRoll.new(@dice_roller)
+    result = skill_roll.skill_roll(32, bonus: 1)
+
+    expected = { result: :success, rolled: 31 }
+    assert_equal expected, result
+
+    @dice_roller.expects(:roll).with(100).returns(53)
+    @dice_roller.expects(:roll).with(10).returns(2)
+
+    result = skill_roll.skill_roll(32, bonus: 1)
+
+    expected = { result: :success, rolled: 23 }
+    assert_equal expected, result
+  end
+
+  test "takes the lowest tenth roll when rolling with bonus dice" do
+    @dice_roller.expects(:roll).with(100).returns(97)
+    @dice_roller.expects(:roll).with(10).returns(8)
+    @dice_roller.expects(:roll).with(10).returns(5)
+
+    skill_roll = SkillRoll.new(@dice_roller)
+    result = skill_roll.skill_roll(32, bonus: 2)
+
+    expected = { result: :failure, rolled: 57 }
+    assert_equal expected, result
+  end
 end

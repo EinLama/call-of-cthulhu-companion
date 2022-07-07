@@ -4,23 +4,42 @@ class SkillRoll
     @dice_roller = dice_roller
   end
 
-  def skill_roll(level, bonus: 0)
+  def skill_roll(level)
     roll = @dice_roller.roll(100)
 
-    bonus_rolls = bonus.times.collect { calculate_roll_with_bonus(roll, @dice_roller.roll(10)) }
+    determine_result(level, roll)
+  end
+
+  def bonus_skill_roll(level, bonus: 0)
+    roll = @dice_roller.roll(100)
+
+    bonus_rolls = bonus.times.map { replace_tenth_for_roll(roll, @dice_roller.roll(10)) }
     roll = find_best_roll(roll, bonus_rolls)
+
+    determine_result(level, roll)
+  end
+
+  def penalty_skill_roll(level, penalty: 0)
+    roll = @dice_roller.roll(100)
+
+    penalty_rolls = penalty.times.map { replace_tenth_for_roll(roll, @dice_roller.roll(10)) }
+    roll = find_worst_roll(roll, penalty_rolls)
 
     determine_result(level, roll)
   end
 
   private
 
-  def calculate_roll_with_bonus(regular_roll, bonus_roll)
-    bonus_roll * 10 + regular_roll % 10
+  def replace_tenth_for_roll(regular_roll, d10_roll)
+    d10_roll * 10 + regular_roll % 10
   end
 
   def find_best_roll(roll, bonus_rolls)
     (bonus_rolls << roll).min
+  end
+
+  def find_worst_roll(roll, penalty_rolls)
+    (penalty_rolls << roll).max
   end
 
   def determine_result(level, roll)

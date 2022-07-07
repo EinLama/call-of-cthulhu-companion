@@ -119,7 +119,7 @@ class SkillRollTest < ActiveSupport::TestCase
     @dice_roller.expects(:roll).with(10).returns(3)
 
     skill_roll = SkillRoll.new(@dice_roller)
-    result = skill_roll.skill_roll(32, bonus: 1)
+    result = skill_roll.bonus_skill_roll(32, bonus: 1)
 
     expected = { result: :success, rolled: 31 }
     assert_equal expected, result
@@ -127,7 +127,7 @@ class SkillRollTest < ActiveSupport::TestCase
     @dice_roller.expects(:roll).with(100).returns(53)
     @dice_roller.expects(:roll).with(10).returns(2)
 
-    result = skill_roll.skill_roll(32, bonus: 1)
+    result = skill_roll.bonus_skill_roll(32, bonus: 1)
 
     expected = { result: :success, rolled: 23 }
     assert_equal expected, result
@@ -139,9 +139,40 @@ class SkillRollTest < ActiveSupport::TestCase
     @dice_roller.expects(:roll).with(10).returns(5)
 
     skill_roll = SkillRoll.new(@dice_roller)
-    result = skill_roll.skill_roll(32, bonus: 2)
+    result = skill_roll.bonus_skill_roll(32, bonus: 2)
 
     expected = { result: :failure, rolled: 57 }
+    assert_equal expected, result
+  end
+
+  test "takes the higher tenth roll when rolling with a penalty die" do
+    @dice_roller.expects(:roll).with(100).returns(41)
+    @dice_roller.expects(:roll).with(10).returns(6)
+
+    skill_roll = SkillRoll.new(@dice_roller)
+    result = skill_roll.penalty_skill_roll(32, penalty: 1)
+
+    expected = { result: :failure, rolled: 61 }
+    assert_equal expected, result
+
+    @dice_roller.expects(:roll).with(100).returns(53)
+    @dice_roller.expects(:roll).with(10).returns(7)
+
+    result = skill_roll.penalty_skill_roll(73, penalty: 1)
+
+    expected = { result: :success, rolled: 73 }
+    assert_equal expected, result
+  end
+
+  test "takes the highst tenth roll when rolling with penalty dice" do
+    @dice_roller.expects(:roll).with(100).returns(17)
+    @dice_roller.expects(:roll).with(10).returns(8)
+    @dice_roller.expects(:roll).with(10).returns(5)
+
+    skill_roll = SkillRoll.new(@dice_roller)
+    result = skill_roll.penalty_skill_roll(32, penalty: 2)
+
+    expected = { result: :failure, rolled: 87 }
     assert_equal expected, result
   end
 end

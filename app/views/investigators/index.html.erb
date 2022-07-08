@@ -1,0 +1,9 @@
+<h1>Investigators</h1>
+
+<ul>
+  <% @investigators.each do |investigator| %>
+    <li>
+      <%= link_to investigator.name, investigator %>
+    </li>
+  <% end %>
+</ul>

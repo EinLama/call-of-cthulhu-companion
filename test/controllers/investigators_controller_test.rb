@@ -32,4 +32,18 @@ class InvestigatorsControllerTest < ActionDispatch::IntegrationTest
       assert_select el, "button", "roll"
     end
   end
+
+  test "it rolls a skill roll for a given skill" do
+    post skill_roll_url(@hoff, :str)
+
+    assert_response :success
+  end
+
+  test "it raises an error if trying to roll for a non-skill" do
+    post skill_roll_url(@hoff, :to_s)
+    assert_response 400
+
+    post skill_roll_url(@hoff, :does_not_exist)
+    assert_response 400
+  end
 end

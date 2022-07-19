@@ -3,6 +3,7 @@ class Investigator < ApplicationRecord
     (siz + con) / 10
   end
 
+  # The characteristics should be their own class
   def characteristics
     %i[str con dex int siz pow app edu]
   end

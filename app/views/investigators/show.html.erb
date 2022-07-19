@@ -1,7 +1,7 @@
 <h1><%= @investigator.name %></h1>
 
-<dl>
+<dl class="characteristics">
   <% @investigator.characteristics.each do |c| %>
-    <dt><%= c.upcase %></dt> <dd><%= @investigator.send(c) %></dd>
+    <dt><%= c.upcase %></dt> <dd><%= @investigator.send(c) %></dd> <button>roll</button>
   <% end %>
 </dl>

@@ -24,4 +24,12 @@ class InvestigatorsControllerTest < ActionDispatch::IntegrationTest
 
     assert_no_match "Clara", @response.body
   end
+
+  test "it shows a skill roll button per characteristic" do
+    get investigator_url(@hoff)
+
+    assert_select ".characteristics" do |dl|
+      assert_select dl, "button", "roll"
+    end
+  end
 end

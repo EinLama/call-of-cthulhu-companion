@@ -28,8 +28,8 @@ class InvestigatorsControllerTest < ActionDispatch::IntegrationTest
   test "it shows a skill roll button per characteristic" do
     get investigator_url(@hoff)
 
-    assert_select ".characteristics" do |dl|
-      assert_select dl, "button", "roll"
+    assert_select "form" do |el|
+      assert_select el, "button", "roll"
     end
   end
 end

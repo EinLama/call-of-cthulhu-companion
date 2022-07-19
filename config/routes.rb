@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   root "investigators#index"
 
   resources :investigators
+
+  post "/investigators/:id/skill_roll/:characteristic", to: "investigators#skill_roll", as: "skill_roll"
 end

@@ -2,6 +2,6 @@
 
 <dl class="characteristics">
   <% @investigator.characteristics.each do |c| %>
-    <dt><%= c.upcase %></dt> <dd><%= @investigator.send(c) %></dd> <button>roll</button>
+    <dt><%= c.upcase %></dt> <dd><%= @investigator.send(c) %></dd> <%= button_to "roll", skill_roll_path(@investigator, c) %>
   <% end %>
 </dl>

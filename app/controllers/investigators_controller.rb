@@ -12,9 +12,7 @@ class InvestigatorsController < ApplicationController
 
     characteristic = params[:characteristic]
 
-    unless @investigator.characteristics.include?(characteristic.to_sym)
-      return head(:bad_request)
-    end
+    return head(:bad_request) unless @investigator.characteristics.include?(characteristic.to_sym)
 
     SkillRoll.new.skill_roll(@investigator.send(characteristic))
   end

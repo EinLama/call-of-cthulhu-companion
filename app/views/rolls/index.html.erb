@@ -1,0 +1,11 @@
+<h1>Rolls</h1>
+
+&larr; <%= link_to "Back", investigator_path(@investigator) %>
+
+<ul>
+  <% @rolls.each do |roll| %>
+    <li>
+      <%= render partial: roll %>
+    </li>
+  <% end %>
+</ul>

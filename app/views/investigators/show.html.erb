@@ -1,0 +1,15 @@
+<h1><%= @investigator.name %></h1>
+
+<div>
+  <%= link_to "List all rolls", investigator_rolls_path(@investigator) %>
+</div>
+
+
+<dl class="characteristics">
+  <% @investigator.characteristics.each do |c| %>
+    <%= form_with model: [@investigator, @investigator.rolls.build] do |form| %>
+      <%= form.hidden_field :target, value: c %>
+      <dt><%= c.upcase %></dt> <dd><%= @investigator.send(c) %></dd> <%= form.submit "Roll #{c.upcase}" %>
+    <% end %>
+  <% end %>
+</dl>

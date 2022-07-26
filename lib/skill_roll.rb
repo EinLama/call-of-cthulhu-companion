@@ -1,6 +1,12 @@
 
+class DiceRoller
+  def roll(eyes)
+    rand(1..eyes)
+  end
+end
+
 class SkillRoll
-  def initialize(dice_roller)
+  def initialize(dice_roller=DiceRoller.new)
     @dice_roller = dice_roller
   end
 

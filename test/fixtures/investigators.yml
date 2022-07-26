@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+hoff:
+  name: Hoff Dickens
+  str: 60
+  con: 50
+  dex: 40
+  int: 80
+  siz: 50
+  pow: 50
+  app: 60
+  edu: 70
+
+clara:
+  name: Clara Lovelace
+  str: 29
+  con: 39
+  dex: 60
+  int: 60
+  siz: 47
+  pow: 60
+  app: 80
+  edu: 70

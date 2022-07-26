@@ -1,0 +1,12 @@
+
+<em><%= time_ago_in_words(roll.created_at) %> ago</em>
+<strong><%= roll.target %></strong>: <%= roll.rolled_value %>
+&rarr;
+<%# FIXME: move to view helper %>
+<% if roll.success? %>
+  <span style="color: darkgreen;">
+<% else %>
+  <span style="color: darkred;">
+<% end %>
+  <%= roll.human_readable_result %>
+</span>

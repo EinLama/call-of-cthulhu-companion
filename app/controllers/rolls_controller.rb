@@ -1,7 +1,7 @@
 class RollsController < ApplicationController
   def index
     @investigator = Investigator.find(params[:investigator_id])
-    @rolls = Roll.all
+    @rolls = Roll.all.order(created_at: :desc)
   end
 
   def show

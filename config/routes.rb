@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "investigators#index"
 
-  resources :investigators
+  resources :investigators do
+    resources :rolls
+  end
 
   post "/investigators/:id/skill_roll/:characteristic", to: "investigators#skill_roll", as: "skill_roll"
 end

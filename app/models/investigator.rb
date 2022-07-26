@@ -1,4 +1,6 @@
 class Investigator < ApplicationRecord
+  has_many :rolls
+
   def max_hp
     (siz + con) / 10
   end

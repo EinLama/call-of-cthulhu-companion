@@ -11,7 +11,7 @@ class RollsController < ApplicationController
   def create
     @investigator = Investigator.find(params[:investigator_id])
 
-    rolled_value = rand(1..100)
+    rolled_value = Roll.roll!
     @roll = @investigator.rolls.create(roll_params(rolled_value))
 
     # FIXME: model needs validation, invalid target/roll is allowed at the moment

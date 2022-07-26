@@ -9,7 +9,7 @@
   <% @investigator.characteristics.each do |c| %>
     <%= form_with model: [@investigator, @investigator.rolls.build] do |form| %>
       <%= form.hidden_field :target, value: c %>
-      <dt><%= c.upcase %></dt> <dd><%= @investigator.send(c) %></dd> <%= form.submit %>
+      <dt><%= c.upcase %></dt> <dd><%= @investigator.send(c) %></dd> <%= form.submit "Roll #{c.upcase}" %>
     <% end %>
   <% end %>
 </dl>
